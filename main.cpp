@@ -2,10 +2,11 @@
 #include <sstream>
 #include <string>
 using namespace std;
-///Statyczne zmienne okreœlaj¹ce wielkoœæ planszy
+///Statyczne zmienne okreï¿½lajï¿½ce wielkoï¿½ï¿½ planszy
 const int M = 10;
 const int N = 6;
-///Funkcja sprawdzaj¹ca czy podane 5 par punktów(po³o¿enie klocków w figurze) s¹ w prawid³owym miejscu
+///Funkcja sprawdzajï¿½ca czy podane 5 par punktï¿½w(poï¿½oï¿½enie klockï¿½w w figurze) sï¿½ w prawidï¿½owym miejscu
+// T
 void sprawdzPozycje(char **plansza, int **pozycje, char znak)
 {
 	bool poprawnaPozycja = true;
@@ -22,7 +23,7 @@ void sprawdzPozycje(char **plansza, int **pozycje, char znak)
 	}
 	for (int i = 0; i < 5; i++)
 	{
-	    //Sprawdzanie czy dany punkt znajduje siê na planszy
+	    //Sprawdzanie czy dany punkt znajduje siï¿½ na planszy
 		if (pozycje[i][1] > M || pozycje[i][1] < 0 || pozycje[i][0] < 0 || pozycje[i][0] > N)
 		{
 			cout << "Nie poprawne polozenie klocka" << endl;
@@ -37,7 +38,7 @@ void sprawdzPozycje(char **plansza, int **pozycje, char znak)
 			break;
 		}
 	}
-	//Jeœli dla danego zestawu klocków nie znaleziono ¿adnych problemów, mo¿na na planszy umieœciæ dan¹ figurê
+	//Jeï¿½li dla danego zestawu klockï¿½w nie znaleziono ï¿½adnych problemï¿½w, moï¿½na na planszy umieï¿½ciï¿½ danï¿½ figurï¿½
 	if (poprawnaPozycja)
 	{
 		plansza[pozycje[0][0]][pozycje[0][1]] = znak;
@@ -49,7 +50,7 @@ void sprawdzPozycje(char **plansza, int **pozycje, char znak)
 }
 void dodajKlocek(char **plansza, char znak, int rotacja, int pozX, int pozY)
 {
-	int **pozycje; //tablica par punktów dla danej figury
+	int **pozycje; //tablica par punktï¿½w dla danej figury
 	pozycje = new int *[5];
 	for (int i = 0; i < 5; i++)
 	{
@@ -64,10 +65,10 @@ void dodajKlocek(char **plansza, char znak, int rotacja, int pozX, int pozY)
 	int yOffset2 = 0;
 	int yOffset3 = 0;
 	int yOffset4 = 0;
-	int rot = rotacja / 90; //Obliczanie przypadków z dowolnego k¹ta co 90 stopni (dla 0 stopni taka sama liczba jak dla 360)
+	int rot = rotacja / 90; //Obliczanie przypadkï¿½w z dowolnego kï¿½ta co 90 stopni (dla 0 stopni taka sama liczba jak dla 360)
 	rot = rot % 4;
 	//Case 0: 0, 360 stopni, Case 1: 90, Case 2: 180, Case 3: 270
-	//Rêczne ustawianie po³ozenia klocków dla ka¿dego z 4 mo¿liwych obrotów
+	//Rï¿½czne ustawianie poï¿½ozenia klockï¿½w dla kaï¿½dego z 4 moï¿½liwych obrotï¿½w
 	switch (znak)
 	{
 	case '#':
@@ -329,7 +330,7 @@ void dodajKlocek(char **plansza, char znak, int rotacja, int pozX, int pozY)
 	pozycje[0][0] = N - pozY;
 	pozycje[0][1] = pozX - 1;
 
-	//Cztery dodatkowe pola, dla kazdej figury inne ulozenie klocków
+	//Cztery dodatkowe pola, dla kazdej figury inne ulozenie klockï¿½w
 	pozycje[1][0] = (N - pozY) + yOffset1;
 	pozycje[1][1] = (pozX - 1) + xOffset1;
 
@@ -360,7 +361,7 @@ void wprowadzKlocek(char **plansza)
 	int pozX = 0;
 	int pozY = 0;
 
-	while (getline(sRuchy, s, ' ')) //Odczytywanie podanej linii znaków i liczb, dopóki jest, odczytuje jeden znak/liczbê rozdzielan¹ poprzez znak spacji
+	while (getline(sRuchy, s, ' ')) //Odczytywanie podanej linii znakï¿½w i liczb, dopï¿½ki jest, odczytuje jeden znak/liczbï¿½ rozdzielanï¿½ poprzez znak spacji
 	{
 		switch (index)
 		{
@@ -369,7 +370,7 @@ void wprowadzKlocek(char **plansza)
 			break;
 		case 1:
 			istringstream(s) >> rotacja;
-            //Sprawdzanie czy podana rotacja klocka jest kolejnym obrotem o 90 stopni (czy rotacja równa siê 0, 90, 180 itd.)
+            //Sprawdzanie czy podana rotacja klocka jest kolejnym obrotem o 90 stopni (czy rotacja rï¿½wna siï¿½ 0, 90, 180 itd.)
 			if (rotacja % 90 != 0)
 			{
 				cout << "Podano bledny obrot klocka!" << endl;
@@ -393,7 +394,7 @@ void wprowadzKlocek(char **plansza)
 				cout << "Niepoprawna pozycja klocka!" << endl;
 				return;
 			}
-			//Jeœli pêtla dojdzie do tego case znaczy to ¿e wpisano poprawnie ca³¹ linie dla jednej figury i mo¿na dodaæ klocek na planszê
+			//Jeï¿½li pï¿½tla dojdzie do tego case znaczy to ï¿½e wpisano poprawnie caï¿½ï¿½ linie dla jednej figury i moï¿½na dodaï¿½ klocek na planszï¿½
 			dodajKlocek(plansza, znak, rotacja, pozX, pozY);
 			break;
 		}
@@ -431,14 +432,14 @@ bool sprawdzPlansze(char **plansza)
 }
 int main()
 {
-    //Utworzenie dynamicznej tablicy dwuwymiarowej, któr¹ mo¿na ³atwo przekazywaæ jako argument funkcji
+    //Utworzenie dynamicznej tablicy dwuwymiarowej, ktï¿½rï¿½ moï¿½na ï¿½atwo przekazywaï¿½ jako argument funkcji
 	char **plansza;
 	plansza = new char *[M];
 	for (int i = 0; i < M; i++)
 	{
 		plansza[i] = new char[N];
 	}
-    //Wype³nienie ca³ej planszy znakiem '.' w naszym przypadku oznacza to pusty element tablicy
+    //Wypeï¿½nienie caï¿½ej planszy znakiem '.' w naszym przypadku oznacza to pusty element tablicy
 	for (int i = 0; i < N; i++)
 	{
 		for (int j = 0; j < M; j++)
@@ -447,7 +448,7 @@ int main()
 		}
 	}
     bool planszaZapelniona = false;
-    //Pêtla wykonuje siê dopóki znajduje siê jeden niewype³niony element tablicy
+    //Pï¿½tla wykonuje siï¿½ dopï¿½ki znajduje siï¿½ jeden niewypeï¿½niony element tablicy
 	while (!planszaZapelniona)
 	{
 	    wyswietlPlansze(plansza);
